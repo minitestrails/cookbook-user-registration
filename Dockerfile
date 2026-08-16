@@ -2,8 +2,8 @@
 # check=error=true
 
 # This Dockerfile is designed for production, not development. Use with Kamal or build'n'run by hand:
-# docker build -t test_user_registration_minitest_rails .
-# docker run -d -p 80:80 -e RAILS_MASTER_KEY=<value from config/master.key> --name test_user_registration_minitest_rails test_user_registration_minitest_rails
+# docker build -t cookbook_user_registration .
+# docker run -d -p 80:80 -e RAILS_MASTER_KEY=<value from config/master.key> --name cookbook_user_registration cookbook_user_registration
 
 # For a containerized dev environment, see Dev Containers: https://guides.rubyonrails.org/getting_started_with_devcontainer.html
 
