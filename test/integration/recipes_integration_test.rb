@@ -6,9 +6,12 @@ class RecipesIntegrationTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_match recipes(:pancakes).title, response.body
     assert_select "#recipes div[id^='recipe_']", count: Recipe.count
+    assert_select "a", text: "New recipe", count: 0
   end
 
   test "creates a recipe" do
+    sign_in_as users(:alice)
+
     get new_recipe_url
     assert_response :success
 
@@ -24,9 +27,13 @@ class RecipesIntegrationTest < ActionDispatch::IntegrationTest
   test "shows a recipe" do
     get recipe_url(recipes(:pancakes))
     assert_response :success
+    assert_select "a", text: "Edit this recipe", count: 0
+    assert_select "button", text: "Destroy this recipe", count: 0
   end
 
   test "updates a recipe" do
+    sign_in_as users(:alice)
+
     recipe = recipes(:pancakes)
 
     get edit_recipe_url(recipe)
@@ -40,6 +47,8 @@ class RecipesIntegrationTest < ActionDispatch::IntegrationTest
   end
 
   test "destroys a recipe" do
+    sign_in_as users(:alice)
+
     recipe = recipes(:lentil_soup)
 
     assert_difference("Recipe.count", -1) do
@@ -49,6 +58,8 @@ class RecipesIntegrationTest < ActionDispatch::IntegrationTest
   end
 
   test "does not create a recipe with invalid data" do
+    sign_in_as users(:alice)
+
     get new_recipe_url
     assert_response :success
 

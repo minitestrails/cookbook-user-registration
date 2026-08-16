@@ -14,6 +14,8 @@ class RecipesTest < ApplicationSystemTestCase
   end
 
   test "creates a recipe" do
+    sign_in_to_ui_as users(:alice)
+
     visit new_recipe_url
     fill_in "Title", with: "Test tacos"
     click_on "Create Recipe"
@@ -21,6 +23,8 @@ class RecipesTest < ApplicationSystemTestCase
   end
 
   test "updates a recipe" do
+    sign_in_to_ui_as users(:alice)
+
     recipe = recipes(:pancakes)
     visit edit_recipe_url(recipe)
     fill_in "Title", with: "Extra fluffy pancakes"
@@ -29,6 +33,8 @@ class RecipesTest < ApplicationSystemTestCase
   end
 
   test "destroys a recipe" do
+    sign_in_to_ui_as users(:alice)
+
     recipe = recipes(:lentil_soup)
     visit recipe_url(recipe)
     accept_confirm do
