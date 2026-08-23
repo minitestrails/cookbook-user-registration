@@ -28,6 +28,7 @@
       <p>Signed in as <%= current_user.email_address %></p>
       <%= button_to "Sign out", session_path, method: :delete %>
     <% else %>
+      <%= link_to "Sign up", sign_up_path %>
       <%= link_to "Sign in", new_session_path if request.path != new_session_path %>
     <% end %>
 
